@@ -14,3 +14,7 @@ Problems I Ran Into & How I Solved Them
   - Enabled Row Level Security and added policies using auth.uid() = user_id for SELECT/INSERT/UPDATE/DELETE
 - TypeScript payload typing
   - Used RealtimePostgresChangesPayload<Bookmark> with safe narrowing to read user_id
+- Redirect issue after hosting
+  - solved in redirecting url of supabase site URL
+- Leveraged AI tools (ChatGPT, Perplexity, Claude) to accelerate learning and problem-solving throughout development.
+  
