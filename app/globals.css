@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --card-bg: #121212;
-  --card-border: #2a2a2a;
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
   --accent-glow: 0 0 20px rgba(0, 255, 255, 0.1);
 }
 
@@ -22,5 +22,5 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   min-height: 100vh;
-  background-image: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #0a0a0a 100%);
+  background-image: radial-gradient(circle at 50% -20%, #f8fafc 0%, #ffffff 50%);
 }

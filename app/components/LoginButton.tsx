@@ -29,26 +29,26 @@ export default function LoginButton() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-black">
+      <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-center space-y-3">
-          <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="text-gray-400">Checking session...</p>
+          <div className="w-8 h-8 border-4 border-slate-300 border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <p className="text-slate-600">Checking session...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black px-4">
+    <div className="min-h-screen flex items-center justify-center bg-white px-4">
       
-      <div className="w-full max-w-md bg-zinc-900 border border-zinc-800 p-8 rounded-2xl shadow-2xl space-y-6">
+      <div className="w-full max-w-md bg-white border border-slate-200 p-8 rounded-2xl shadow-xl space-y-6">
         
         {/* Project Title */}
         <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight text-white">
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900">
             Smart Bookmarks
           </h1>
-          <p className="text-gray-400 text-sm">
+          <p className="text-slate-600 text-sm">
             Sign in to continue to your dashboard
           </p>
         </div>
@@ -56,7 +56,7 @@ export default function LoginButton() {
         {/* Login Button */}
         <button
           onClick={login}
-          className="w-full flex items-center justify-center gap-3 bg-white text-black py-3 rounded-xl font-medium hover:bg-gray-200 transition active:scale-95"
+          className="w-full flex items-center justify-center gap-3 bg-white text-black py-3 rounded-xl font-medium border border-slate-300 hover:bg-slate-50 transition active:scale-95"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +74,7 @@ export default function LoginButton() {
         </button>
 
         {/* Footer */}
-        <p className="text-xs text-center text-gray-500">
+        <p className="text-xs text-center text-slate-500">
           Secure authentication powered by Google
         </p>
       </div>

@@ -60,7 +60,7 @@ export default function BookmarkForm({ onAdd }: Props) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Enter Url Title "
-            className="block w-full px-4 py-3 bg-[#1a1a1a] border border-[#333] rounded-xl text-gray-200 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all peer"
+            className="block w-full px-4 py-3 bg-white border border-slate-300 rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all peer"
           />
         </div>
 
@@ -69,7 +69,7 @@ export default function BookmarkForm({ onAdd }: Props) {
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             placeholder="Enter Url "
-            className="block w-full px-4 py-3 bg-[#1a1a1a] border border-[#333] rounded-xl text-gray-200 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all peer"
+            className="block w-full px-4 py-3 bg-white border border-slate-300 rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all peer"
           />
 
         </div>
@@ -78,7 +78,7 @@ export default function BookmarkForm({ onAdd }: Props) {
       <button
         onClick={addBookmark}
         disabled={loading}
-        className="h-[50px] px-8 rounded-xl bg-green-500 text-white font-bold tracking-wide transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center min-w-[120px]"
+        className="h-[50px] px-8 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold tracking-wide transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center min-w-[120px] shadow-sm"
       >
         {loading ? (
           <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
