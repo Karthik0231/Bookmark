@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Bookmark } from '@/app/types/bookmark'
+import type { RealtimePostgresChangesPayload } from '@supabase/supabase-js'
 import BookmarkForm from '../components/BookmarkForm'
 import BookmarkList from '../components/BookmarkList'
 
@@ -23,8 +24,26 @@ export default function DashboardPage() {
   }
 
   const handleLogout = async () => {
+    const confirmed = typeof window !== 'undefined'
+      ? window.confirm('Do you want to sign out?')
+      : true
+    if (!confirmed) return
     await supabase.auth.signOut()
     router.push('/')
+  }
+
+  const getPayloadUserId = (payload: RealtimePostgresChangesPayload<Bookmark>): string | undefined => {
+    if (payload.eventType === 'INSERT' || payload.eventType === 'UPDATE') {
+      const n = payload.new
+      if (n && typeof n === 'object' && 'user_id' in n && typeof (n as any).user_id === 'string') {
+        return (n as Bookmark).user_id
+      }
+    }
+    const o = payload.old
+    if (o && typeof o === 'object' && 'user_id' in o && typeof (o as any).user_id === 'string') {
+      return (o as Partial<Bookmark>).user_id
+    }
+    return undefined
   }
 
   useEffect(() => {
@@ -37,19 +56,30 @@ export default function DashboardPage() {
 
       const channel = supabase
         .channel('bookmarks-changes')
-        .on(
-          'postgres_changes',
-          {
-            event: '*',
-            schema: 'public',
-            table: 'bookmarks',
-            filter: `user_id=eq.${user.id}`,
-          },
-          () => {
-            console.log('Realtime change received! Refetching...')
-            fetchBookmarks()
-          }
-        )
+        .on('postgres_changes', {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'bookmarks',
+        }, (payload: RealtimePostgresChangesPayload<Bookmark>) => {
+          const uid = getPayloadUserId(payload)
+          if (uid === user.id) fetchBookmarks()
+        })
+        .on('postgres_changes', {
+          event: 'UPDATE',
+          schema: 'public',
+          table: 'bookmarks',
+        }, (payload: RealtimePostgresChangesPayload<Bookmark>) => {
+          const uid = getPayloadUserId(payload)
+          if (uid === user.id) fetchBookmarks()
+        })
+        .on('postgres_changes', {
+          event: 'DELETE',
+          schema: 'public',
+          table: 'bookmarks',
+        }, (payload: RealtimePostgresChangesPayload<Bookmark>) => {
+          const uid = getPayloadUserId(payload)
+          if (uid === user.id) fetchBookmarks()
+        })
         .subscribe((status) => {
           setStatus(status)
         })
@@ -99,10 +129,6 @@ export default function DashboardPage() {
           <section>
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-xl font-semibold text-slate-700">Your Collection</h2>
-              <div className="flex items-center gap-2">
-                <div className={`w-2 h-2 rounded-full ${status === 'SUBSCRIBED' ? 'bg-green-500 shadow-[0_0_10px_#22c55e]' : 'bg-yellow-500'}`} />
-                <span className="text-xs text-slate-500 font-mono uppercase tracking-wider">{status}</span>
-              </div>
             </div>
             <BookmarkList bookmarks={bookmarks} onDelete={fetchBookmarks} />
           </section>
