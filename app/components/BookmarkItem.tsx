@@ -24,7 +24,7 @@ export default function BookmarkItem({ bookmark, onDelete }: Props) {
       <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-cyan-500/0 via-cyan-500/50 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
       <div className="space-y-2 mb-4">
-        <h3 className="font-bold text-lg text-gray-100 line-clamp-1 group-hover:text-cyan-400 transition-colors">
+        <h3 className="font-bold text-lg text-cyan-400 line-clamp-1 group-hover:text-cyan-500 transition-colors">
           <a href={bookmark.url} target="_blank" rel="noopener noreferrer" className="before:absolute before:inset-0">
             {bookmark.title}
           </a>

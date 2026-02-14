@@ -60,7 +60,7 @@ export default function BookmarkForm({ onAdd }: Props) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Enter Url Title "
-            className="block w-full px-4 py-3 bg-[#1a1a1a] border border-[#333] rounded-xl text-gray-200 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all peer"
+            className="block w-full px-4 py-3 text-black border border-[#333] rounded-xl focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all peer"
           />
         </div>
 
@@ -69,7 +69,7 @@ export default function BookmarkForm({ onAdd }: Props) {
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             placeholder="Enter Url "
-            className="block w-full px-4 py-3 bg-[#1a1a1a] border border-[#333] rounded-xl text-gray-200 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all peer"
+            className="block w-full px-4 py-3 text-black border border-[#333] rounded-xl focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all peer"
           />
 
         </div>
